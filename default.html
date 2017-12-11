@@ -22,21 +22,6 @@
                     $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
                 }
             });
-
-            $('#b1').click(function () {
-                $('.lineup').each(function () {
-                    alert("lineup: " + "<br>" +
-                        "vf:" + $(this).children(".vf").text() + "\n" +
-                        "c:" + $(this).children(".c").text() + "\n" +
-                        "hf:" + $(this).children(".hf").text() + "\n" +
-                        "vb:" + $(this).children(".vb").text() + "\n" +
-                        "hb:" + $(this).children(".hb").text());
-                });
-
-                $('.goalkeeper div').each(function () {
-                    alert("goalkeeper: " + $(this).text());
-                });
-            });
         });
     </script>
    
@@ -44,7 +29,7 @@
 <body>
 
     <center>
-        <img src="eagle.jpg" width="750px" style="padding:25px; " /><br />
+        <img src="eagle.jpg" width="250px" style="padding:25px; " /><br />
             <div class="main">
                 <div class="lineup">
                         <div class="vf snap-target"></div>
