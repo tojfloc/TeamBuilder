@@ -22,6 +22,7 @@
                     $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
                 }
             });
+
         });
     </script>
    
@@ -29,7 +30,6 @@
        $(function () {
            $("#theEagle").click(function () {
                $("#3rdLine").toggle("slow", function () {
-                   // Animation complete.
                });
 
                $(document).ready(function () {
@@ -39,12 +39,18 @@
                        $(this).animate({ height: 490 }, 1000);
                    });
                });
-
-
            });
        });
    </script>
-    
+
+    <script>
+        $(document).ready(function () {
+            $(".draggable").click(function () {
+                    $(this).toggleClass("changeBackground");
+                });
+            });
+    </script>
+
 </head>
 <body>
 
@@ -81,7 +87,7 @@
 
 </div>
         <br /><br />
-				        <div class="players" id="players">
+		<div class="players" id="players">
             <div class="draggable">2 Hugo</div>
             <div class="draggable">3 Felix</div>
             <div class="draggable">4 Filip O</div>
@@ -111,7 +117,7 @@
             <div class="draggable">28 Arman</div>
         </div>
        
-        <h1>Laguppställningar SIBK F-06</h1>
+        <h1>Laguppställningar SIBK P-06</h1>
         <br />Dra spelaren till rätt position, använd safari och välj sen att spara som pdf, dela till google drive.
         <br /><br /><br /><br /><br /><br />
     </center>
