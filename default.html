@@ -9,6 +9,8 @@
     <script src="jquery.ui.touch-punch.min.js"></script>
 
     <script>
+
+    //Make Div draggable
         $(function () {
             $('.draggable').draggable({ snap: ".snap-target", snapMode: "inner", snapTolerance: 55, revert: 'invalid' });
             $('.snap-target').droppable({
@@ -24,9 +26,8 @@
             });
 
         });
-    </script>
-   
-   <script>
+
+    //Klick Eagle to get 3rd line
        $(function () {
            $("#theEagle").click(function () {
                $("#3rdLine").toggle("slow", function () {
@@ -41,14 +42,67 @@
                });
            });
        });
-   </script>
 
-    <script>
+    //Klick player to higlight
         $(document).ready(function () {
             $(".draggable").click(function () {
                     $(this).toggleClass("changeBackground");
                 });
-            });
+        });
+
+        var paramsString = new URLSearchParams(window.location.search);
+        var searchParams = new URLSearchParams(paramsString);
+
+        $(document).ready(function () {
+            if (searchParams.has("team") === true) {
+                if (searchParams.get("team").toUpperCase() === "P06") {
+                    $(".F06").css("display", "none");
+                    $(".F03").css("display", "none");
+                }
+
+                if (searchParams.get("team").toUpperCase() === "F06") {
+                    $(".P06").css("display", "none");
+                    $(".F03").css("display", "none");
+                }
+
+                if (searchParams.get("team").toUpperCase() === "F03") {
+                    $(".P06").css("display", "none");
+                    $(".F06").css("display", "none");
+                }
+                else {
+                    $(".P06").css("display", "none");
+                    $(".F03").css("display", "none");
+                    $(".F06").css("display", "none");
+                    alert("Hittar inget lag att administrera, ange rätt lagnamn, ex: default.html?team=P06")
+                }
+            }
+            else {
+                alert("Glöm inte att ange parameter för laget, ex: default.html?team=P06");
+            }
+        });
+    </script>
+
+    <!--quereystring-->
+    <script>
+        //var paramsString = "q=URLUtils.searchParams&team=P06";
+       // var paramsString = new URLSearchParams(window.location.search);
+        //params.set('version', 2.0);
+        //var searchParams = new URLSearchParams(paramsString);
+        //Iterate the search parameters.
+        //for (let p of searchParams) {
+        //    alert(p);
+        //}
+        //searchParams.has("topic") === true; // true
+        //searchParams.get("topic") === "api"; // true
+        //searchParams.getAll("topic"); // ["api"]
+        //searchParams.get("foo") === null; // true
+        //searchParams.append("topic", "webdev");
+        //searchParams.toString(); // "q=URLUtils.searchParams&topic=api&topic=webdev"
+        //searchParams.set("topic", "More webdev");
+        //searchParams.toString(); // "q=URLUtils.searchParams&topic=More+webdev"
+        //searchParams.delete("topic");
+        //searchParams.toString(); // "q=URLUtils.searchParams"
+       
     </script>
 
 </head>
@@ -87,39 +141,60 @@
 
 </div>
         <br /><br />
-		<div class="players" id="players">
-            <div class="draggable">2 Hugo</div>
-            <div class="draggable">3 Felix</div>
-            <div class="draggable">4 Filip O</div>
-            <div class="draggable">5 Axel</div>
-            <div class="draggable">6 Dexter</div>
-            <div class="draggable">7 Theo</div>
-            <div class="draggable">8 Elias B</div>
-            <div class="draggable">9 Elton</div>
-            <div class="draggable">10 Benjamin</div>
-            <div class="draggable">11 Filip J</div>
-            <div class="draggable">12 Melvin</div>
-            <div class="draggable">13 Hannes</div>
-            <div class="draggable">14 Albin F</div>
-            <div class="draggable">15 William S</div>
-            <div class="draggable">16 William B</div>
-            <div class="draggable">17 Albin M</div>
-            <div class="draggable">18 Hampus</div>
-            <div class="draggable">19 Niklas</div>
-            <div class="draggable">20 Lukas Ö</div>
-            <div class="draggable">21 Viggo</div>
-            <div class="draggable">22 Lucas L</div>
-            <div class="draggable">23 Robin</div>
-            <div class="draggable">24 Viktor</div>
-            <div class="draggable">25 Jonathan</div>
-            <div class="draggable">26 Filip C</div>
-            <div class="draggable">27 Elias S</div>
-            <div class="draggable">28 Arman</div>
+        
+        <!--Querystring T=P06-->
+        <div class="P06">
+            <div class="players" id="players">
+                <div class="draggable">2 Hugo</div>
+                <div class="draggable">3 Felix</div>
+                <div class="draggable">4 Filip O</div>
+                <div class="draggable">5 Axel</div>
+                <div class="draggable">6 Dexter</div>
+                <div class="draggable">7 Theo</div>
+                <div class="draggable">8 Elias B</div>
+                <div class="draggable">9 Elton</div>
+                <div class="draggable">10 Benjamin</div>
+                <div class="draggable">11 Filip J</div>
+                <div class="draggable">12 Melvin</div>
+                <div class="draggable">13 Hannes</div>
+                <div class="draggable">14 Albin F</div>
+                <div class="draggable">15 William S</div>
+                <div class="draggable">16 William B</div>
+                <div class="draggable">17 Albin M</div>
+                <div class="draggable">18 Hampus</div>
+                <div class="draggable">19 Niklas</div>
+                <div class="draggable">20 Lukas Ö</div>
+                <div class="draggable">21 Viggo</div>
+                <div class="draggable">22 Lucas L</div>
+                <div class="draggable">23 Robin</div>
+                <div class="draggable">24 Viktor</div>
+                <div class="draggable">25 Jonathan</div>
+                <div class="draggable">26 Filip C</div>
+                <div class="draggable">27 Elias S</div>
+                <div class="draggable">28 Arman</div>
+            </div>
+            <h1>Laguppställningar SIBK P-06</h1>
+            <br />Dra spelaren till rätt position, använd safari och välj sen att spara som pdf, dela till google drive.
         </div>
-       
-        <h1>Laguppställningar SIBK P-06</h1>
-        <br />Dra spelaren till rätt position, använd safari och välj sen att spara som pdf, dela till google drive.
-        <br /><br /><br /><br /><br /><br />
+
+        <div class="F06">
+            <div class="players" id="players">
+                <div class="draggable">Jonas</div>
+            </div>
+            <h1>Laguppställningar SIBK F-06</h1>
+            <br />Dra spelaren till rätt position, använd safari och välj sen att spara som pdf, dela till google drive.
+        </div>
+
+        <div class="F03">
+            <div class="players" id="players">
+                <div class="draggable">ERIK</div>
+            </div>
+            <h1>Laguppställningar SIBK F-06</h1>
+            <br />Dra spelaren till rätt position, använd safari och välj sen att spara som pdf, dela till google drive.
+        </div>
+
+
+
     </center>
 
 </body>
