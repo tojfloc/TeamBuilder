@@ -53,7 +53,6 @@ div.snap-target {
     color: white;
 }
 
-
 div.draggable {
     /*border-radius: 50%;*/
     width: 245px;
@@ -75,7 +74,6 @@ div.draggable {
     height: 90px;
     width: 750px;
     border: none;
-    border-color: white;
     padding-left: 2px;
     padding-top: 2px;
     border-bottom: solid;
@@ -97,5 +95,15 @@ div.draggable {
     height: 700px;
     background-color: white;
     border:none;
+}
+
+.P06 {
+    border: none;
+}
+.F06 {
+    border: none;
+}
+.F03 {
+    border: none;
 }
 

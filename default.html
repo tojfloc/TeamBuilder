@@ -53,32 +53,33 @@
         var paramsString = new URLSearchParams(window.location.search);
         var searchParams = new URLSearchParams(paramsString);
 
+        //Kolla vilket lag man vill se
         $(document).ready(function () {
-            if (searchParams.has("team") === true) {
-                if (searchParams.get("team").toUpperCase() === "P06") {
-                    $(".F06").css("display", "none");
-                    $(".F03").css("display", "none");
-                }
+            var theTeam = searchParams.get("team").toUpperCase();
+            switch (theTeam) {
+                case 'P06':
+                    $('.P06').css('display', 'inline-block');
+                    $('.F06').css('display', 'none');
+                    $('.F03').css('display', 'none');
+                        break;
 
-                if (searchParams.get("team").toUpperCase() === "F06") {
-                    $(".P06").css("display", "none");
-                    $(".F03").css("display", "none");
-                }
+                case 'F06':
+                    $('.P06').css('display', 'none');
+                    $('.F06').css('display', 'inline-block');
+                    $('.F03').css('display', 'none');
+                    break;
 
-                if (searchParams.get("team").toUpperCase() === "F03") {
-                    $(".P06").css("display", "none");
-                    $(".F06").css("display", "none");
+                case 'F03':
+                    $('.P06').css('display', 'none');
+                    $('.F06').css('display', 'none');
+                    $('.F03').css('display', 'inline-block');
+                        break;
+                default:
+                    $('.P06').css('display', 'none');
+                    $('.F06').css('display', 'none');
+                    $('.F03').css('display', 'none');
+                        alert('Ange parameter i url: ?team=P06');
                 }
-                else {
-                    $(".P06").css("display", "none");
-                    $(".F03").css("display", "none");
-                    $(".F06").css("display", "none");
-                    alert("Hittar inget lag att administrera, ange rätt lagnamn, ex: default.html?team=P06")
-                }
-            }
-            else {
-                alert("Glöm inte att ange parameter för laget, ex: default.html?team=P06");
-            }
         });
     </script>
 
@@ -143,7 +144,7 @@
         <br /><br />
         
         <!--Querystring T=P06-->
-        <div class="P06">
+        <div class="P06" id="P06">
             <div class="players" id="players">
                 <div class="draggable">2 Hugo</div>
                 <div class="draggable">3 Felix</div>
@@ -177,7 +178,7 @@
             <br />Dra spelaren till rätt position, använd safari och välj sen att spara som pdf, dela till google drive.
         </div>
 
-        <div class="F06">
+        <div class="F06" id="F06">
             <div class="players" id="players">
                 <div class="draggable">Jonas</div>
             </div>
@@ -185,7 +186,7 @@
             <br />Dra spelaren till rätt position, använd safari och välj sen att spara som pdf, dela till google drive.
         </div>
 
-        <div class="F03">
+        <div class="F03" id="F03">
             <div class="players" id="players">
                 <div class="draggable">ERIK</div>
             </div>
