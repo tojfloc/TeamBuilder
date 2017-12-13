@@ -28,6 +28,21 @@ border-width:1px;
     margin-bottom:10px;
 }
 
+.teams {
+    width: 245px;
+    height: 75px;
+    font-weight: bolder;
+    font-size: x-large;
+    text-align: center;
+    line-height: 75px;
+    border-right: solid;
+    border-right-color: grey;
+    border-right-width: 1px;
+    border-left: solid;
+    border-left-color: grey;
+    border-left-width: 1px;
+}
+
 div.vb {
     margin-left:125px;
 }

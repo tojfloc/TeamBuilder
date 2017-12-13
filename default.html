@@ -19,7 +19,19 @@
                 }
             });
 
-            $('#players').droppable({
+            $('#playersP06').droppable({
+                drop: function (ev, ui) {
+                    $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
+                }
+            });
+
+            $('#playersF06').droppable({
+                drop: function (ev, ui) {
+                    $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
+                }
+            });
+
+            $('#playersF03').droppable({
                 drop: function (ev, ui) {
                     $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
                 }
@@ -61,56 +73,44 @@
                     $('.P06').css('display', 'inline-block');
                     $('.F06').css('display', 'none');
                     $('.F03').css('display', 'none');
+                    $('.teams').css('display', 'none');
                         break;
 
                 case 'F06':
                     $('.P06').css('display', 'none');
                     $('.F06').css('display', 'inline-block');
                     $('.F03').css('display', 'none');
+                    $('.teams').css('display', 'none');
                     break;
 
                 case 'F03':
                     $('.P06').css('display', 'none');
                     $('.F06').css('display', 'none');
                     $('.F03').css('display', 'inline-block');
+                    $('.teams').css('display', 'none');
                         break;
                 default:
                     $('.P06').css('display', 'none');
                     $('.F06').css('display', 'none');
                     $('.F03').css('display', 'none');
-                        alert('Ange parameter i url: ?team=P06');
+                    $('.teams').css('display', 'inline-block');
+
+                    alert('Ange parameter i url: ?team=P06');
                 }
         });
-    </script>
-
-    <!--quereystring-->
-    <script>
-        //var paramsString = "q=URLUtils.searchParams&team=P06";
-       // var paramsString = new URLSearchParams(window.location.search);
-        //params.set('version', 2.0);
-        //var searchParams = new URLSearchParams(paramsString);
-        //Iterate the search parameters.
-        //for (let p of searchParams) {
-        //    alert(p);
-        //}
-        //searchParams.has("topic") === true; // true
-        //searchParams.get("topic") === "api"; // true
-        //searchParams.getAll("topic"); // ["api"]
-        //searchParams.get("foo") === null; // true
-        //searchParams.append("topic", "webdev");
-        //searchParams.toString(); // "q=URLUtils.searchParams&topic=api&topic=webdev"
-        //searchParams.set("topic", "More webdev");
-        //searchParams.toString(); // "q=URLUtils.searchParams&topic=More+webdev"
-        //searchParams.delete("topic");
-        //searchParams.toString(); // "q=URLUtils.searchParams"
-       
     </script>
 
 </head>
 <body>
 
     <center>
-        <img src="eagle.jpg" id="theEagle" width="250" style="padding:25px;"/><br />
+    
+        <div class="teams" id="teams">
+            <a href="default.html?team=P06">P06</a> | <a href="default.html?team=F06">F06</a> | <a href="default.html?team=F03">F03</a>  
+        </div>
+
+
+        <img src="eagle.jpg" id="theEagle" width="150" style="padding:25px;"/><br />
             <div class="main">
                 <div class="lineup">
                         <div class="vf snap-target"></div>
@@ -145,7 +145,7 @@
         
         <!--Querystring T=P06-->
         <div class="P06" id="P06">
-            <div class="players" id="players">
+            <div class="players" id="playersP06">
                 <div class="draggable">2 Hugo</div>
                 <div class="draggable">3 Felix</div>
                 <div class="draggable">4 Filip O</div>
@@ -174,12 +174,10 @@
                 <div class="draggable">27 Elias S</div>
                 <div class="draggable">28 Arman</div>
             </div>
-            <h1>Laguppställningar SIBK P-06</h1>
-            <br />Dra spelaren till rätt position, använd safari och välj sen att spara som pdf, dela till google drive.
         </div>
 
         <div class="F06" id="F06">
-            <div class="players" id="players">
+            <div class="players" id="playersF06">
                 <div class="draggable">2 Linnea</div>
 					<div class="draggable">3 Ebba H</div>
 					<div class="draggable">4 Nomi</div>
@@ -205,20 +203,15 @@
 					<div class="draggable">25 Ida</div>
 					<div class="draggable">26 Julia</div>
             </div>
-            <h1>Laguppställningar SIBK F-06</h1>
-            <br />Dra spelaren till rätt position, använd safari och välj sen att spara som pdf, dela till google drive.
         </div>
 
         <div class="F03" id="F03">
-            <div class="players" id="players">
+            <div class="players" id="playersF03">
                 <div class="draggable">ERIK</div>
             </div>
-            <h1>Laguppställningar SIBK F-06</h1>
-            <br />Dra spelaren till rätt position, använd safari och välj sen att spara som pdf, dela till google drive.
         </div>
-
-
-
+        <br />Dra spelaren till rätt position. Spara som en skämbild och dela eller använd funktionen i Safari för att spara som pdf och dela till google drive. <br />
+        &copy; t.johansson :-)
     </center>
 
 </body>
