@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SIBK F06</title>
+    <link href="styles_gm.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="jquery.ui.touch-punch.min.js"></script>
+
+    <script>
+
+    //Make Div draggable
+        $(function () {
+            $('.draggable').draggable({ snap: ".snap-target", snapMode: "inner", snapTolerance: 55, revert: 'invalid' });
+            $('.snap-target').droppable({
+                drop: function (ev, ui) {
+                    $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
+                }
+            });
+
+            $('#playersP06').droppable({
+                drop: function (ev, ui) {
+                    $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
+                }
+            });
+        });
+
+    //Klick player to higlight
+        $(document).ready(function () {
+            $(".draggable").click(function () {
+                    $(this).toggleClass("changeBackground");
+                });
+        });
+
+    </script>
+
+</head>
+<body>
+    <center>
+      <img src="eagle.jpg" id="theEagle" width="150" style="padding:25px;"/><br />
+            <div class="main">
+                <div class="cols">
+                        <div class="team1 snap-target"></div>
+                        <div class="team2 snap-target"></div>
+                        <div class="teaM3 snap-target"></div>
+                        <div class="teamExtra1 snap-target"></div>
+                </div>
+                <div class="cols">
+                    <div class="teaM4 snap-target"></div>
+                    <div class="team5 snap-target"></div>
+                    <div class="team5 snap-target"></div>
+                    <div class="teamExtra2 snap-target"></div>
+                </div>
+                <div class="cols">
+                    <div class="P06" id="P06">
+                        <div class="players" id="playersP06">
+                            <div class="draggable">2 Hugo</div>
+                            <div class="draggable">3 Felix</div>
+                            <div class="draggable">4 Filip O</div>
+                            <div class="draggable">5 Axel</div>
+                            <div class="draggable">6 Dexter</div>
+                            <div class="draggable">7 Theo</div>
+                            <div class="draggable">8 Elias B</div>
+                            <div class="draggable">9 Elton</div>
+                            <div class="draggable">10 Benjamin</div>
+                            <div class="draggable">11 Filip J</div>
+                            <div class="draggable">12 Melvin</div>
+                            <div class="draggable">13 Hannes</div>
+                            <div class="draggable">14 Albin F</div>
+                            <div class="draggable">15 William S</div>
+                            <div class="draggable">16 William B</div>
+                            <div class="draggable">17 Albin M</div>
+                            <div class="draggable">18 Hampus</div>
+                            <div class="draggable">19 Niklas</div>
+                            <div class="draggable">20 Lukas Ö</div>
+                            <div class="draggable">21 Viggo</div>
+                            <div class="draggable">22 Lucas L</div>
+                            <div class="draggable">23 Robin</div>
+                            <div class="draggable">24 Viktor</div>
+                            <div class="draggable">25 Jonathan</div>
+                            <div class="draggable">26 Filip C</div>
+                            <div class="draggable">27 Elias S</div>
+                            <div class="draggable">28 Arman</div>
+                        </div>
+                    </div>
+                </div>
+</div>
+        <br /><br />
+        <!--Querystring T=P06-->
+        
+
+
+    </center>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿.main {
+    width: 750px;
+    height:1000px;
+    background-color: transparent;
+    border: none;
+}
+
+.cols {
+    width: 230px;
+    height: 1000px;
+    float: left;
+    border: solid;
+    border-color: grey;
+    border-width: 1px;
+}
+
+.players {
+    width: 230px;
+    height: 900px;
+    border: none;
+}
+
+div.snap-target {
+    /*border-radius: 50%;*/
+    width: 230px;
+    height: 250px;
+    background-color: white;
+    float: left;
+    border-bottom:dotted;
+    border-bottom-color:gray;
+    border-bottom-width: 1px;
+}
+
+.changeBackground {
+    background-color: firebrick;
+    color: white;
+    /*border:none;*/
+}
+
+div.draggable {
+    width: 230px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: x-large;
+    text-align: center;
+    float: left;
+    line-height: 50px;
+    border: none;
+}
+
+
+
+
