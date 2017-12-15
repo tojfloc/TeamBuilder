@@ -1,23 +1,27 @@
 ﻿.main {
     width: 750px;
-    height:1000px;
+    height: 1505px;
     background-color: transparent;
     border: none;
 }
 
 .cols {
     width: 230px;
-    height: 1000px;
+    height: 1505px;
     float: left;
     border: solid;
     border-color: grey;
     border-width: 1px;
+    border-bottom:none;
 }
 
 .players {
     width: 230px;
-    height: 900px;
+    height: 1505px;
     border: none;
+    border-bottom: dotted;
+    border-bottom-color: gray;
+    border-bottom-width: 1px;
 }
 
 div.snap-target {
