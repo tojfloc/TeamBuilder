@@ -16,8 +16,9 @@
         var c = 1;
         while ($('.players .changeBackground').length > 0 || c++ < 10) {
             var team = '.cols:nth-child(' + col + ') div:nth-child(' + row + ')'
-            $('.players .changeBackground:first').appendTo(team);
-            if (col == 2) {
+            var player = Math.floor((Math.random() * $('.players .changeBackground').length) + 1);
+            $('.players .changeBackground:nth(' + player + ')').appendTo(team);
+	    if (col == 2) {
                 col = 1;
                 if (row == 6) {
                     row = 1;
