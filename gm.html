@@ -14,7 +14,7 @@
         var col = 0;
         var row = 0;
 	$('#theEagle').on('click', function() {
-	for (var ix = $('.players .changeBackground').length - 1; ix > 0; ix--) {
+	for (var ix = $('.players .changeBackground').length; ix > 0; ix--) {
             var team = '.cols:nth(' + col + ') > div:nth(' + row + ')'
             var player = Math.floor((Math.random() * ix));
             $('.players .changeBackground:nth(' + player + ')').appendTo(team);
