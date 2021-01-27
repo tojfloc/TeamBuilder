@@ -10,11 +10,11 @@
 
     <script>
     //Random teams
-    $(function() {$('#theEagle').on('click', function() {
+    $(function() {
         var col = 1;
         var row = 1;
-        var c = 1;
-        while ($('.players .changeBackground').length > 0 || c++ < 10) {
+	$('#theEagle').on('click', function() {
+        while ($('.players .changeBackground').length > 0) {
             var team = '.cols:nth-child(' + col + ') div:nth-child(' + row + ')'
             var player = Math.floor((Math.random() * $('.players .changeBackground').length) + 1);
             $('.players .changeBackground:nth-child(' + player + ')').appendTo(team);
