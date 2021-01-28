@@ -52,11 +52,10 @@ div.draggable {
     border: none;
 }
 
-.radiocss
+.radiocsslabel
 {
     font-weight: bolder;
     font-size: large;
-    height: 40px;
 }
 
 
