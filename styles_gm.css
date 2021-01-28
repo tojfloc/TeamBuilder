@@ -43,12 +43,12 @@ div.snap-target {
 
 div.draggable {
     width: 230px;
-    height: 50px;
+    height: 40px;
     font-weight: bolder;
-    font-size: x-large;
+    font-size: large;
     text-align: center;
     float: left;
-    line-height: 50px;
+    line-height: 40px;
     border: none;
 }
 
