@@ -40,7 +40,7 @@
                 }
             });
 
-            $('#playershj16').droppable({
+            $('#playersHJ16').droppable({
                 drop: function (ev, ui) {
                     $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
                 }
@@ -84,24 +84,24 @@
         $(document).ready(function () {
             var theTeam = searchParams.get("team").toUpperCase();
             switch (theTeam) {
-                case 'hj16':
-                    $('.hj16').css('display', 'inline-block');
+                case 'HJ16':
+                    $('.HJ16').css('display', 'inline-block');
                     $('.F06').css('display', 'none');
                     $('.teams').css('display', 'none');
                         break;
 
                 case 'F06':
-                    $('.hj16').css('display', 'none');
+                    $('.HJ16').css('display', 'none');
                     $('.F06').css('display', 'inline-block');
                     $('.teams').css('display', 'none');
                     break;
 
                  default:
-                    $('.hj16').css('display', 'none');
+                    $('.HJ16').css('display', 'none');
                     $('.F06').css('display', 'none');
                     $('.teams').css('display', 'inline-block');
 
-                    alert('Ange parameter i url: ?team=hj16');
+                    alert('Ange parameter i url: ?team=HJ16');
                 }
         });
     </script>
@@ -112,7 +112,7 @@
     <center>
     
         <div class="teams" id="teams">
-            <a href="default.html?team=hj16">HJ16</a> | <a href="default.html?team=F06">F06</a>
+            <a href="default.html?team=HJ16">HJ16</a> | <a href="default.html?team=F06">F06</a>
         </div>
 
 
@@ -149,9 +149,9 @@
 </div>
         <br /><br />
         
-        <!--Querystring T=hj16-->
-        <div class="hj16" id="hj16">
-            <div class="players" id="playershj16">
+        <!--Querystring T=HJ16-->
+        <div class="HJ16" id="HJ16">
+            <div class="players" id="playersHJ16">
 <div class="draggable">Adam</div>
 <div class="draggable">Albin F</div>
 <div class="draggable">Albin M</div>
