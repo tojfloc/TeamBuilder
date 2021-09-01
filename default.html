@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>SIBK F06</title>
+    <title>SIBK Teambuilder</title>
     <link href="styles.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -40,19 +40,13 @@
                 }
             });
 
-            $('#playersP06').droppable({
+            $('#playershj16').droppable({
                 drop: function (ev, ui) {
                     $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
                 }
             });
 
             $('#playersF06').droppable({
-                drop: function (ev, ui) {
-                    $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
-                }
-            });
-
-            $('#playersF03').droppable({
                 drop: function (ev, ui) {
                     $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
                 }
@@ -90,33 +84,27 @@
         $(document).ready(function () {
             var theTeam = searchParams.get("team").toUpperCase();
             switch (theTeam) {
-                case 'P06':
-                    $('.P06').css('display', 'inline-block');
+                case 'hj16':
+                    $('.hj16').css('display', 'inline-block');
                     $('.F06').css('display', 'none');
                     $('.F03').css('display', 'none');
                     $('.teams').css('display', 'none');
                         break;
 
                 case 'F06':
-                    $('.P06').css('display', 'none');
+                    $('.hj16').css('display', 'none');
                     $('.F06').css('display', 'inline-block');
                     $('.F03').css('display', 'none');
                     $('.teams').css('display', 'none');
                     break;
 
-                case 'F03':
-                    $('.P06').css('display', 'none');
-                    $('.F06').css('display', 'none');
-                    $('.F03').css('display', 'inline-block');
-                    $('.teams').css('display', 'none');
-                        break;
-                default:
-                    $('.P06').css('display', 'none');
+                 default:
+                    $('.hj16').css('display', 'none');
                     $('.F06').css('display', 'none');
                     $('.F03').css('display', 'none');
                     $('.teams').css('display', 'inline-block');
 
-                    alert('Ange parameter i url: ?team=P06');
+                    alert('Ange parameter i url: ?team=hj16');
                 }
         });
     </script>
@@ -127,7 +115,7 @@
     <center>
     
         <div class="teams" id="teams">
-            <a href="default.html?team=P06">P06</a> | <a href="default.html?team=F06">F06</a> | <a href="default.html?team=F03">F03</a>  
+            <a href="default.html?team=hj16">hj16</a> | <a href="default.html?team=F06">F06</a> | <a href="default.html?team=F03">F03</a>  
         </div>
 
 
@@ -164,34 +152,37 @@
 </div>
         <br /><br />
         
-        <!--Querystring T=P06-->
-        <div class="P06" id="P06">
-            <div class="players" id="playersP06">
-                <div class="draggable">3 Felix</div>
-		<div class="draggable">4 Alexander</div>
-                <div class="draggable">5 Axel</div>
-                <div class="draggable">6 Dexter</div>
-                <div class="draggable">7 Theo</div>
-                <div class="draggable">8 Elias B</div>
-                <div class="draggable">9 Elton</div>
-                <div class="draggable">10 Benjamin</div>
-                <div class="draggable">11 Filip J</div>
-                <div class="draggable">12 Melvin</div>
-                <div class="draggable">13 Hannes</div>
-                <div class="draggable">14 Albin F</div>
-                <div class="draggable">15 William S</div>
-                <div class="draggable">16 William B</div>
-                <div class="draggable">17 Albin M</div>
-                <div class="draggable">18 Hampus</div>
-                <div class="draggable">19 Niklas</div>
-                <div class="draggable">20 Lukas Ö</div>
-                <div class="draggable">21 Viggo</div>
-                <div class="draggable">24 Viktor</div>
-                <div class="draggable">25 Jonte</div>
-                <div class="draggable">26 Filip C</div>
-                <div class="draggable">28 Arman</div>
-		<div class="draggable">Extra 1</div>
-		<div class="draggable">Extra 1</div>
+        <!--Querystring T=hj16-->
+        <div class="hj16" id="hj16">
+            <div class="players" id="playershj16">
+               <div class="draggable">Adam</div>
+<div class="draggable">Albin F</div>
+<div class="draggable">Albin M</div>
+<div class="draggable">Alexander</div>
+<div class="draggable">Axel</div>
+<div class="draggable">Benjamin</div>
+<div class="draggable">David</div>
+<div class="draggable">Dexter</div>
+<div class="draggable">Elias B</div>
+<div class="draggable">Elias W</div>
+<div class="draggable">Erik</div>
+<div class="draggable">Filip C</div>
+<div class="draggable">Filip E</div>
+<div class="draggable">Filip J</div>
+<div class="draggable">Love</div>
+<div class="draggable">Ludvig</div>
+<div class="draggable">Martin</div>
+<div class="draggable">Mattis</div>
+<div class="draggable">Melvin</div>
+<div class="draggable">Niklas</div>
+<div class="draggable">Olle</div>
+<div class="draggable">Sebastian</div>
+<div class="draggable">Viggo</div>
+<div class="draggable">William B</div>
+<div class="draggable">William S</div>
+<div class="draggable">Extra 1</div>
+<div class="draggable">Extra 2</div>
+<div class="draggable">Extra 2</div>
             </div>
         </div>
 
@@ -226,37 +217,7 @@
 				<div class="draggable">Extra 3</div>
 		     </div>
         </div>
-		
-        <div class="F03" id="F03">
-            <div class="players" id="playersF03">
-				<div class="draggable">3 Agnes H</div>
-				<div class="draggable">14 Agnes L</div>
-				<div class="draggable">15 Anna B</div>
-				<div class="draggable">6 Anna M</div>
-				<div class="draggable">9 Ella</div>
-				<div class="draggable">19 Ellen</div>
-				<div class="draggable">12 Ellie</div>
-				<div class="draggable">16 Elin</div>
-				<div class="draggable">7 Elsa</div>
-				<div class="draggable">17 Hedda</div>
-				<div class="draggable">5 Ida B</div>
-				<div class="draggable">40 Ida M</div>
-				<div class="draggable">2 Josefin</div>
-				<div class="draggable">10 Linn</div>
-				<div class="draggable">11 Louise</div>
-				<div class="draggable">18 Maja</div>
-				<div class="draggable">1 Sara E</div>
-				<div class="draggable">8 Sara Ö</div>
-				<div class="draggable">4 Sofia A</div>
-				<div class="draggable">13 Sophia L</div>
-				<div class="draggable">Extra 1</div>
-				<div class="draggable">Extra 2</div>
-				<div class="draggable">Extra 3</div>
-				<div class="draggable">Extra 4</div>        
-            </div>
-        </div>
-		
-       </div>
+	  </div>
         <br />Dra spelaren till rätt position. Spara som en skämbild och dela eller använd funktionen i Safari för att spara som pdf och dela till google drive. <br />
         &copy; t.johansson :-) <br> <A href="https://tojfloc.github.io/TeamBuilder/gm.html">GroupMaker</A>
     </center>
