@@ -65,12 +65,12 @@
             const importObject = JSON.parse(atob(params['e']));
             if (importObject.showAllLines) $('.3rdLine').show();
 
-            $('.hj16_e1').text() = importObject['hj16_e1'];
-            $('.hj16_e2').text() = importObject['hj16_e2'];
-            $('.hj16_e3').text() = importObject['hj16_e3'];
-            $('.f06_e1').text() = importObject['f06_e1'];
-            $('.f06_e2').text() = importObject['f06_e2'];
-            $('.f06_e3').text() = importObject['f06_e3'];
+            $('.hj16_e1').text(importObject['hj16_e1']);
+            $('.hj16_e2').text(importObject['hj16_e2']);
+            $('.hj16_e3').text(importObject['hj16_e3']);
+            $('.f06_e1').text(importObject['f06_e1']);
+            $('.f06_e2').text(importObject['f06_e2']);
+            $('.f06_e3').text(importObject['f06_e3']);
             
             for (var i = 0; i < importObject.lineups.length; i++) {
                 var lineup = importObject.lineups[i];
