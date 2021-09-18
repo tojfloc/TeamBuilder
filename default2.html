@@ -60,7 +60,7 @@
         exportObject['gk'] = $('.lineup-goalkeeper div').text();
         var b64object = btoa(JSON.stringify(exportObject));
         var url = window.location.origin + window.location.pathname + '?';
-        if (searchParams['team'] !== undefined) url += 'team=' + searchParam['team'] + '&';
+        if (searchParams['team'] !== undefined) url += 'team=' + searchParams['team'] + '&';
         url += 'e=' + b64object;
         copyToClipboard(url);
     }
