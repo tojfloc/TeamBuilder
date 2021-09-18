@@ -9,9 +9,6 @@
     <script src="jquery.ui.touch-punch.min.js"></script>
 
     <script>
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const searchParams = Object.fromEntries(urlSearchParams.entries());
-        
     $.expr[':'].textEquals = $.expr[':'].textEquals || $.expr.createPseudo(function(arg) {
         return function( elem ) {
             return $(elem).text().match("^" + arg + "$");
@@ -37,6 +34,9 @@
     });
         
     function exportLineups() {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const searchParams = Object.fromEntries(urlSearchParams.entries());
+
         var exportObject = { 'lineups':[] };
         var lineups = $('.lineup');
         exportObject['showAllLines'] = $('.lineup').length == $('.lineup:visible').length;
@@ -66,6 +66,9 @@
     }
 
     function importLineups() {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const searchParams = Object.fromEntries(urlSearchParams.entries());
+	    
         if (searchParams['e'] !== undefined) {
             const importObject = JSON.parse(atob(searchParams['e']));
             if (importObject.showAllLines) $('.3rdLine').show();
@@ -166,6 +169,9 @@
 
         //Kolla vilket lag man vill se
         $(document).ready(function () {
+	    const urlSearchParams = new URLSearchParams(window.location.search);
+	    const searchParams = Object.fromEntries(urlSearchParams.entries());
+		
             var theTeam = searchParams.get("team").toUpperCase();
             switch (theTeam) {
                 case 'HJ16':
