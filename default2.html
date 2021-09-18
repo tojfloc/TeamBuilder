@@ -14,25 +14,48 @@
             return $(elem).text().match("^" + arg + "$");
         };
     });
-	    
+
+    function copyToClipboard(str) {
+        const el = document.createElement('textarea');
+        el.value = str;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    };    
+
+    $('.extras').dblclick(function() {
+        var newName = prompt('Ange nytt namn', $(this).text());
+        if (newName != null && newName != "") {
+            $(this).text(newName);
+        }
+    });
+        
     function exportLineups() {
-	var exportObject = { 'lineups':[] };
-	var lineups = $('.lineup');
-	exportObject['showAllLines'] = $('.lineup').length == $('.lineup:visible').length;
-	for(var i = 0; i < lineups.length; i++) {
-	    var lineup = lineups[i];
-	    var lineupObject = {};
-	    lineupObject['vf'] = $(lineup).children('.vf').text();
-	    lineupObject['c'] = $(lineup).children('.c').text();
-	    lineupObject['hf'] = $(lineup).children('.hf').text();
-	    lineupObject['vb'] = $(lineup).children('.vb').text();
-	    lineupObject['hb'] = $(lineup).children('.hb').text();
-	    exportObject['lineups'].push(lineupObject);
-	}
-	exportObject['gk'] = $('.lineup-goalkeeper div').text();
-	var b64object = btoa(JSON.stringify(exportObject));
-    	var url = window.location.origin + window.location.pathname + '?e=' + b64object;
-    	copyToClipboard(url);
+        var exportObject = { 'lineups':[] };
+        var lineups = $('.lineup');
+        exportObject['showAllLines'] = $('.lineup').length == $('.lineup:visible').length;
+        exportObject['hj16_e1'] = $('.hj16_e1').text();
+        exportObject['hj16_e2'] = $('.hj16_e2').text();
+        exportObject['hj16_e3'] = $('.hj16_e3').text();
+        exportObject['f06_e1'] = $('.f06_e1').text();
+        exportObject['f06_e2'] = $('.f06_e2').text();
+        exportObject['f06_e3'] = $('.f06_e3').text();
+        
+        for(var i = 0; i < lineups.length; i++) {
+            var lineup = lineups[i];
+            var lineupObject = {};
+            lineupObject['vf'] = $(lineup).children('.vf').text();
+            lineupObject['c'] = $(lineup).children('.c').text();
+            lineupObject['hf'] = $(lineup).children('.hf').text();
+            lineupObject['vb'] = $(lineup).children('.vb').text();
+            lineupObject['hb'] = $(lineup).children('.hb').text();
+            exportObject['lineups'].push(lineupObject);
+        }
+        exportObject['gk'] = $('.lineup-goalkeeper div').text();
+        var b64object = btoa(JSON.stringify(exportObject));
+        var url = window.location.origin + window.location.pathname + '?e=' + b64object;
+        copyToClipboard(url);
     }
 
     function importLineups() {
@@ -41,6 +64,14 @@
         if (params['e'] !== undefined) {
             const importObject = JSON.parse(atob(params['e']));
             if (importObject.showAllLines) $('.3rdLine').show();
+
+            $('.hj16_e1').text() = importObject['hj16_e1'];
+            $('.hj16_e2').text() = importObject['hj16_e2'];
+            $('.hj16_e3').text() = importObject['hj16_e3'];
+            $('.f06_e1').text() = importObject['f06_e1'];
+            $('.f06_e2').text() = importObject['f06_e2'];
+            $('.f06_e3').text() = importObject['f06_e3'];
+            
             for (var i = 0; i < importObject.lineups.length; i++) {
                 var lineup = importObject.lineups[i];
                 var lineupDiv = $('.lineup:nth(' + i + ')');
@@ -60,15 +91,6 @@
             $(player).detach().css({ top: 0, left: 0 }).appendTo(target);
         }
     }
-	    
-    function copyToClipboard(str) {
-        const el = document.createElement('textarea');
-        el.value = str;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-    };    
 	    
     //Random teams
     $('#theEagle').on('click', function() {
@@ -240,9 +262,9 @@
 <div class="draggable">Kasper 07</div>
 <div class="draggable">Lian 07</div>
 <div class="draggable">Lucas Å 07</div>
-<div class="draggable">Extra 1</div>
-<div class="draggable">Extra 2</div>
-<div class="draggable">Extra 2</div>
+<div class="draggable extras hj16_e1">Extra 1</div>
+<div class="draggable extras hj16_e2">Extra 2</div>
+<div class="draggable extras hj16_e3">Extra 2</div>
             </div>
         </div>
 
@@ -272,9 +294,9 @@
 				<div class="draggable">24 Embla</div>
 				<div class="draggable">25 Ida</div>
 				<div class="draggable">26 Julia</div>				
-				<div class="draggable">Extra 1</div>
-				<div class="draggable">Extra 2</div>
-				<div class="draggable">Extra 3</div>
+				<div class="draggable extras f06_e1">Extra 1</div>
+				<div class="draggable extras f06_e2">Extra 2</div>
+				<div class="draggable extras f06_e3">Extra 3</div>
 		     </div>
 	  </div>
         <br />Dra spelaren till rätt position. Spara som en skämbild och dela eller använd funktionen i Safari för att spara som pdf och dela till google drive. <br />
