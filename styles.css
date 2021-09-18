@@ -31,7 +31,7 @@ border-width:1px;
 .teams {
     width: 245px;
     height: 75px;
-    font-weight: normal;
+    font-weight: bolder;
     font-size: x-large;
     text-align: center;
     line-height: 75px;
@@ -68,16 +68,15 @@ div.snap-target {
 }
 
 .changeBackground {
-    background-color: white;
+    background-color: azure;
     color: black;
-    font-weight: bolder;
 }
 
 div.draggable {
     /*border-radius: 50%;*/
     width: 245px;
     height: 75px;
-    font-weight: normal;
+    font-weight: bolder;
     font-size: x-large;
     text-align: center;
     float: left;
