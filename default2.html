@@ -9,6 +9,9 @@
     <script src="jquery.ui.touch-punch.min.js"></script>
 
     <script>
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const searchParams = Object.fromEntries(urlSearchParams.entries());
+        
     $.expr[':'].textEquals = $.expr[':'].textEquals || $.expr.createPseudo(function(arg) {
         return function( elem ) {
             return $(elem).text().match("^" + arg + "$");
@@ -24,11 +27,13 @@
         document.body.removeChild(el);
     };    
 
-    $('.extras').dblclick(function() {
-        var newName = prompt('Ange nytt namn', $(this).text());
-        if (newName != null && newName != "") {
-            $(this).text(newName);
-        }
+    $(function() {
+        $('.extras').dblclick(function() {
+            var newName = prompt('Ange nytt namn', $(this).text());
+            if (newName != null && newName != "") {
+                $(this).text(newName);
+            }
+        });
     });
         
     function exportLineups() {
@@ -54,15 +59,15 @@
         }
         exportObject['gk'] = $('.lineup-goalkeeper div').text();
         var b64object = btoa(JSON.stringify(exportObject));
-        var url = window.location.origin + window.location.pathname + '?e=' + b64object;
+        var url = window.location.origin + window.location.pathname + '?';
+        if (searchParams['team'] !== undefined) url += 'team=' + searchParam['team'] + '&';
+        url += 'e=' + b64object;
         copyToClipboard(url);
     }
 
     function importLineups() {
-        const urlSearchParams = new URLSearchParams(window.location.search);
-        const params = Object.fromEntries(urlSearchParams.entries());
-        if (params['e'] !== undefined) {
-            const importObject = JSON.parse(atob(params['e']));
+        if (searchParams['e'] !== undefined) {
+            const importObject = JSON.parse(atob(searchParams['e']));
             if (importObject.showAllLines) $('.3rdLine').show();
 
             $('.hj16_e1').text(importObject['hj16_e1']);
@@ -158,9 +163,6 @@
                     $(this).toggleClass("changeBackground");
                 });
         });
-
-        var paramsString = new URLSearchParams(window.location.search);
-        var searchParams = new URLSearchParams(paramsString);
 
         //Kolla vilket lag man vill se
         $(document).ready(function () {
