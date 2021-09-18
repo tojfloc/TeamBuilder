@@ -57,7 +57,7 @@
             lineupObject['hb'] = $(lineup).children('.hb').text();
             exportObject['lineups'].push(lineupObject);
         }
-        exportObject['gk'] = $('.lineup-goalkeeper div').text();
+        exportObject['gk'] = $('.goalkeeper div').text();
         var b64object = btoa(JSON.stringify(exportObject));
         var url = window.location.origin + window.location.pathname + '?';
         if (searchParams['team'] !== undefined) url += 'team=' + searchParams['team'] + '&';
@@ -89,7 +89,7 @@
                 movePlayer(lineup.vb, $(lineupDiv).children('.vb'));
                 movePlayer(lineup.hb, $(lineupDiv).children('.hb'));
             }
-	    movePlayer(importObject.gk, $('.lineup-goalkeeper'));
+	    movePlayer(importObject.gk, $('.goalkeeper'));
         }
     }
 	    
