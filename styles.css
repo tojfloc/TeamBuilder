@@ -87,6 +87,7 @@ div.draggable {
     border-left: solid;
     border-left-color: grey;
     border-left-width: 1px;
+
 }
 
 .lineup-goalkeeper {
@@ -112,9 +113,8 @@ div.draggable {
 .players {
     width: 750px;
     height: 900px;
-    background-color: firebrick;
+    background-color: transparent;
 	color: white;
-    border:none;
 }
 
 .hj16 {
