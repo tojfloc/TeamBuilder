@@ -172,7 +172,7 @@
 	    const urlSearchParams = new URLSearchParams(window.location.search);
 	    const searchParams = Object.fromEntries(urlSearchParams.entries());
 		
-            var theTeam = searchParams.get("team").toUpperCase();
+            var theTeam = searchParams["team"].toUpperCase();
             switch (theTeam) {
                 case 'HJ16':
                     $('.HJ16').css('display', 'inline-block');
