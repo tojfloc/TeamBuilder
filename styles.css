@@ -113,8 +113,8 @@ div.draggable {
 .players {
     width: 750px;
     height: 900px;
-    background-color: transparent;
-	color: white;
+    background-color: white;
+	color: black;
 }
 
 .hj16 {
