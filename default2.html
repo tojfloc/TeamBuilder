@@ -9,7 +9,65 @@
     <script src="jquery.ui.touch-punch.min.js"></script>
 
     <script>
+    $.expr[':'].textEquals = $.expr[':'].textEquals || $.expr.createPseudo(function(arg) {
+        return function( elem ) {
+            return $(elem).text().match("^" + arg + "$");
+        };
+    });
+	    
+    function exportLineups() {
+	var exportObject = { 'lineups':[] };
+	var lineups = $('.lineup');
+	exportObject['showAllLines'] = $('.lineup').length == $('.lineup:visible').length;
+	for(var i = 0; i < lineups.length; i++) {
+	    var lineup = lineups[i];
+	    var lineupObject = {};
+	    lineupObject['vf'] = $(lineup).children('.vf').text();
+	    lineupObject['c'] = $(lineup).children('.c').text();
+	    lineupObject['hf'] = $(lineup).children('.hf').text();
+	    lineupObject['vb'] = $(lineup).children('.vb').text();
+	    lineupObject['hb'] = $(lineup).children('.hb').text();
+	    exportObject['lineups'].push(lineupObject);
+	}
+	var b64object = btoa(JSON.stringify(exportObject));
+    	var url = window.location.origin + window.location.pathname + '?e=' + b64object;
+    	copyToClipboard(url);
+    }
 
+    function importLineups() {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        if (params['e'] !== undefined) {
+            const importObject = JSON.parse(atob(params['e']));
+            if (importObject.showAllLines) $('.3rdLine').show();
+            for (var i = 0; i < importObject.lineups.length; i++) {
+                var lineup = importObject.lineups[i];
+                var lineupDiv = $('.lineup:nth(' + i + ')');
+                movePlayer(lineup.vf, $(lineupDiv).children('.vf'));
+                movePlayer(lineup.c, $(lineupDiv).children('.c'));
+                movePlayer(lineup.hf, $(lineupDiv).children('.hf'));
+                movePlayer(lineup.vb, $(lineupDiv).children('.vb'));
+                movePlayer(lineup.hb, $(lineupDiv).children('.hb'));
+            }
+        }
+    }
+	    
+    function movePlayer(name, target) {
+        var player = $('.players div:textEquals("' + name + '"):first');
+        if (player.length === 1) {
+            $(player).detach().css({ top: 0, left: 0 }).appendTo(target);
+        }
+    }
+	    
+    function copyToClipboard(str) {
+        const el = document.createElement('textarea');
+        el.value = str;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    };    
+	    
     //Random teams
     $('#theEagle').on('click', function() {
         var col = 1;
@@ -219,6 +277,7 @@
 	  </div>
         <br />Dra spelaren till rätt position. Spara som en skämbild och dela eller använd funktionen i Safari för att spara som pdf och dela till google drive. <br />
         &copy; t.johansson :-) <br> <A href="https://tojfloc.github.io/TeamBuilder/gm.html">GroupMaker</A>
+	    <div><a href="#" onclick="exportLineups();return false;" id="export">Exportera till urklipp</a></div>
     </center>
 
 </body>
