@@ -29,6 +29,7 @@
 	    lineupObject['hb'] = $(lineup).children('.hb').text();
 	    exportObject['lineups'].push(lineupObject);
 	}
+	exportObject['gk'] = $('.lineup-goalkeeper div').text();
 	var b64object = btoa(JSON.stringify(exportObject));
     	var url = window.location.origin + window.location.pathname + '?e=' + b64object;
     	copyToClipboard(url);
@@ -49,6 +50,7 @@
                 movePlayer(lineup.vb, $(lineupDiv).children('.vb'));
                 movePlayer(lineup.hb, $(lineupDiv).children('.hb'));
             }
+	    movePlayer(exportObject.gk, $('.lineup-goalkeeper'));
         }
     }
 	    
@@ -165,7 +167,7 @@
     </script>
 
 </head>
-<body>
+<body onload='importLineups()'>
 
     <center>
     
