@@ -62,10 +62,14 @@ div.snap-target {
     float: left;
 
 }
-
-.changeBackground {
+.changeBackground_org {
     background-color: firebrick;
     color: white;
+}
+
+.changeBackground {
+    background-color: transparent;
+    color: black;
 }
 
 div.draggable {
@@ -108,7 +112,8 @@ div.draggable {
 .players {
     width: 750px;
     height: 900px;
-    background-color: white;
+    background-color: firebrick;
+	color: white;
     border:none;
 }
 
