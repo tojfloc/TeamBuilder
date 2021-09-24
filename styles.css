@@ -63,7 +63,7 @@ div.snap-target {
     float: left;
 }
 
-changeBackground {
+.changeBackground {
     background-color: firebrick;
     color: white;
 }
