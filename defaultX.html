@@ -48,7 +48,6 @@
         exportObject['f06_e3'] = $('.f06_e3').text();
         //exportObject['opponents'] = $('.opponents').value.text();
         
-        
         for(var i = 0; i < lineups.length; i++) {
             var lineup = lineups[i];
             var lineupObject = {};
@@ -66,9 +65,6 @@
         url += 'e=' + b64object;
         copyToClipboard(url);
     }
-
-       
-
 
     function importLineups() {
         const urlSearchParams = new URLSearchParams(window.location.search);
@@ -169,7 +165,7 @@
     //Klick player to higlight
         $(document).ready(function () {
             $(".draggable").click(function () {
-                    $(this).toggleClass("changeBackground");
+                    $(this).toggleClass("div.changeBackground");
                 });
         });
 
