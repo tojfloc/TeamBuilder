@@ -102,26 +102,26 @@
         }
     }
 	    
-    //Random teams
-    $('#theEagle').on('click', function() {
-        var col = 1;
-        var row = 1;
-        var c = 1;
-        while ($('.players .changeBackground').length > 0 || c++ < 10) {
-            var team = '.cols:nth-child(' + col + ') div:nth-child(' + row + ')'
-            $('.players .changeBackground:first').appendTo(team);
-            if (col == 2) {
-                col = 1;
-                if (row == 6) {
-                    row = 1;
-                } else {
-                    row++;
-                }
-            } else {
-                col = 2;
-            }
-        }
-    });
+    // //Random teams - bort
+    // $('#theEagle').on('click', function() {
+    //     var col = 1;
+    //     var row = 1;
+    //     var c = 1;
+    //     while ($('.players .changeBackground').length > 0 || c++ < 10) {
+    //         var team = '.cols:nth-child(' + col + ') div:nth-child(' + row + ')'
+    //         $('.players .changeBackground:first').appendTo(team);
+    //         if (col == 2) {
+    //             col = 1;
+    //             if (row == 6) {
+    //                 row = 1;
+    //             } else {
+    //                 row++;
+    //             }
+    //         } else {
+    //             col = 2;
+    //         }
+    //     }
+    // });
 	    
     //Make Div draggable
         $(function () {
@@ -165,7 +165,7 @@
     //Klick player to higlight
         $(document).ready(function () {
             $(".draggable").click(function () {
-                    $(this).toggleClass("div.changeBackground");
+                    $(this).toggleClass("changeBackground");
                 });
         });
 
