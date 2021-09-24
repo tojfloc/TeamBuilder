@@ -36,7 +36,7 @@
     function exportLineups() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const searchParams = Object.fromEntries(urlSearchParams.entries());
-
+ 
         var exportObject = { 'lineups':[] };
         var lineups = $('.lineup');
         //exportObject['showAllLines'] = $('.lineup').length == $('.lineup:visible').length;
@@ -48,7 +48,7 @@
         exportObject['f06_e3'] = $('.f06_e3').text();
         exportObject['opponents'] = $('#opponents').val();
         exportObject['gameplace'] = $('#gameplace').val();
-        exportObject['gemedate'] = $('#gamedate').val();
+        exportObject['gamedate'] = $('#gamedate').val();
         
         for(var i = 0; i < lineups.length; i++) {
             var lineup = lineups[i];
@@ -217,8 +217,8 @@
        <div class="divCell"><a href="#" onclick="exportLineups();return false;" id="export"><img src="eagle.jpg" id="theEagle" width="150" style="padding:25px;" /></a></div>
        <div class="divCell">
            <input class="input opponents" type="text" id="opponents" placeholder="Ange motståndare">
-           <input class="input opponents" type="text" id="gameplace" placeholder="Ange spelplats">
-           <input class="input opponents" type="text" id="gamedate" placeholder="Ange datum">
+           <input class="input gameplace" type="text" id="gameplace" placeholder="Ange spelplats">
+           <input class="input gamedate" type="text" id="gamedate" placeholder="Ange datum">
     </div>
    </div>
 </div>
