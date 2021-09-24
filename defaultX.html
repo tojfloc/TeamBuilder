@@ -46,7 +46,9 @@
         exportObject['f06_e1'] = $('.f06_e1').text();
         exportObject['f06_e2'] = $('.f06_e2').text();
         exportObject['f06_e3'] = $('.f06_e3').text();
-        exportObject['opponents'] = $('.opponents').val();
+        exportObject['opponents'] = $('#opponents').val();
+        exportObject['gameplace'] = $('#gameplace').val();
+        exportObject['gemedate'] = $('#gamedate').val();
         
         for(var i = 0; i < lineups.length; i++) {
             var lineup = lineups[i];
@@ -80,7 +82,10 @@
             $('.f06_e1').text(importObject['f06_e1']);
             $('.f06_e2').text(importObject['f06_e2']);
             $('.f06_e3').text(importObject['f06_e3']);
-            $('.opponents').val(importObject['opponents']);
+            $('#opponents').val(importObject['opponents']);
+            $('#gameplace').val(importObject['gameplace']);
+            $('#gamedate').val(importObject['gamedate']);
+
             
             for (var i = 0; i < importObject.lineups.length; i++) {
                 var lineup = importObject.lineups[i];
@@ -211,9 +216,9 @@
    <div class="divRow">
        <div class="divCell"><a href="#" onclick="exportLineups();return false;" id="export"><img src="eagle.jpg" id="theEagle" width="150" style="padding:25px;" /></a></div>
        <div class="divCell">
-           <input class="input opponents" type="text" onfocus="this.value=''" id="opponents" value="Ange motståndare">
-           <input class="input" type="text" onfocus="this.value=''" id="datum" value="Ange datum">
-           <input class="input" type="text" onfocus="this.value=''" id="gameplace" value="Ange spelplats">
+           <input class="input opponents" type="text" id="opponents" placeholder="Ange motståndare">
+           <input class="input opponents" type="text" id="gameplace" placeholder="Ange spelplats">
+           <input class="input opponents" type="text" id="gamedate" placeholder="Ange datum">
     </div>
    </div>
 </div>
