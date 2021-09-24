@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SIBK Teambuilder</title>
+    <link href="styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="jquery.ui.touch-punch.min.js"></script>
+
+    <script>
+    $.expr[':'].textEquals = $.expr[':'].textEquals || $.expr.createPseudo(function(arg) {
+        return function( elem ) {
+            return $(elem).text().match("^" + arg + "$");
+        };
+    });
+
+    function copyToClipboard(str) {
+        const el = document.createElement('textarea');
+        el.value = str;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    };    
+
+    $(function() {
+        $('.extras').dblclick(function() {
+            var newName = prompt('Ange nytt namn', $(this).text());
+            if (newName != null && newName != "") {
+                $(this).text(newName);
+            }
+        });
+    });
+        
+    function exportLineups() {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const searchParams = Object.fromEntries(urlSearchParams.entries());
+
+        var exportObject = { 'lineups':[] };
+        var lineups = $('.lineup');
+        exportObject['showAllLines'] = $('.lineup').length == $('.lineup:visible').length;
+        exportObject['hj16_e1'] = $('.hj16_e1').text();
+        exportObject['hj16_e2'] = $('.hj16_e2').text();
+        exportObject['hj16_e3'] = $('.hj16_e3').text();
+        exportObject['f06_e1'] = $('.f06_e1').text();
+        exportObject['f06_e2'] = $('.f06_e2').text();
+        exportObject['f06_e3'] = $('.f06_e3').text();
+        
+        for(var i = 0; i < lineups.length; i++) {
+            var lineup = lineups[i];
+            var lineupObject = {};
+            lineupObject['vf'] = $(lineup).children('.vf').text();
+            lineupObject['c'] = $(lineup).children('.c').text();
+            lineupObject['hf'] = $(lineup).children('.hf').text();
+            lineupObject['vb'] = $(lineup).children('.vb').text();
+            lineupObject['hb'] = $(lineup).children('.hb').text();
+            exportObject['lineups'].push(lineupObject);
+        }
+        exportObject['gk'] = $('.goalkeeper div').text();
+        var b64object = btoa(JSON.stringify(exportObject));
+        var url = window.location.origin + window.location.pathname + '?';
+        if (searchParams['team'] !== undefined) url += 'team=' + searchParams['team'] + '&';
+        url += 'e=' + b64object;
+        copyToClipboard(url);
+    }
+
+    function importLineups() {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const searchParams = Object.fromEntries(urlSearchParams.entries());
+	    
+        if (searchParams['e'] !== undefined) {
+            const importObject = JSON.parse(atob(searchParams['e']));
+            if (importObject.showAllLines) $('.3rdLine').show();
+
+            $('.hj16_e1').text(importObject['hj16_e1']);
+            $('.hj16_e2').text(importObject['hj16_e2']);
+            $('.hj16_e3').text(importObject['hj16_e3']);
+            $('.f06_e1').text(importObject['f06_e1']);
+            $('.f06_e2').text(importObject['f06_e2']);
+            $('.f06_e3').text(importObject['f06_e3']);
+            
+            for (var i = 0; i < importObject.lineups.length; i++) {
+                var lineup = importObject.lineups[i];
+                var lineupDiv = $('.lineup:nth(' + i + ')');
+                movePlayer(lineup.vf, $(lineupDiv).children('.vf'));
+                movePlayer(lineup.c, $(lineupDiv).children('.c'));
+                movePlayer(lineup.hf, $(lineupDiv).children('.hf'));
+                movePlayer(lineup.vb, $(lineupDiv).children('.vb'));
+                movePlayer(lineup.hb, $(lineupDiv).children('.hb'));
+            }
+	    movePlayer(importObject.gk, $('.goalkeeper'));
+        }
+    }
+	    
+    function movePlayer(name, target) {
+        var player = $('.players div:textEquals("' + name + '"):first');
+        if (player.length === 1) {
+            $(player).detach().css({ top: 0, left: 0 }).appendTo(target);
+        }
+    }
+	    
+    //Random teams
+    $('#theEagle').on('click', function() {
+        var col = 1;
+        var row = 1;
+        var c = 1;
+        while ($('.players .changeBackground').length > 0 || c++ < 10) {
+            var team = '.cols:nth-child(' + col + ') div:nth-child(' + row + ')'
+            $('.players .changeBackground:first').appendTo(team);
+            if (col == 2) {
+                col = 1;
+                if (row == 6) {
+                    row = 1;
+                } else {
+                    row++;
+                }
+            } else {
+                col = 2;
+            }
+        }
+    });
+	    
+    //Make Div draggable
+        $(function () {
+            $('.draggable').draggable({ snap: ".snap-target", snapMode: "inner", snapTolerance: 55, revert: 'invalid' });
+            $('.snap-target').droppable({
+                drop: function (ev, ui) {
+                    $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
+                }
+            });
+
+            $('#playersHJ16').droppable({
+                drop: function (ev, ui) {
+                    $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
+                }
+            });
+
+            $('#playersF06').droppable({
+                drop: function (ev, ui) {
+                    $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
+                }
+            });
+
+        });
+
+    ////Klick Eagle to get 3rd line
+    //   $(function () {
+    //       $("#theEagle").click(function () {
+    //           $("#3rdLine").toggle("slow", function () {
+    //           });
+
+    //           $(document).ready(function () {
+    //               $("#main").toggle(function () {
+    //                   $(this).animate({ height: 660 }, 100);
+    //               }, function () {
+    //                   $(this).animate({ height: 490 }, 1000);
+    //               });
+    //           });
+    //       });
+    //   });
+
+    //Klick player to higlight
+        $(document).ready(function () {
+            $(".draggable").click(function () {
+                    $(this).toggleClass("changeBackground");
+                });
+        });
+
+        //Kolla vilket lag man vill se
+        $(document).ready(function () {
+	    const urlSearchParams = new URLSearchParams(window.location.search);
+	    const searchParams = Object.fromEntries(urlSearchParams.entries());
+		
+            var theTeam = searchParams["team"].toUpperCase();
+            switch (theTeam) {
+                case 'HJ16':
+                    $('.HJ16').css('display', 'inline-block');
+                    $('.F06').css('display', 'none');
+                    $('.teams').css('display', 'none');
+                        break;
+
+                case 'F06':
+                    $('.HJ16').css('display', 'none');
+                    $('.F06').css('display', 'inline-block');
+                    $('.teams').css('display', 'none');
+                    break;
+
+                 default:
+                    $('.HJ16').css('display', 'none');
+                    $('.F06').css('display', 'none');
+                    $('.teams').css('display', 'inline-block');
+
+                    alert('Ange parameter i url: ?team=HJ16');
+                }
+        });
+    </script>
+
+</head>
+<body onload='importLineups()'>
+
+    <center>
+
+        <div class="teams" id="teams">
+            <a href="default.html?team=HJ16">HJ16</a> | <a href="default.html?team=F06">F06</a>
+        </div>
+
+        <a href="#" onclick="exportLineups();return false;" id="export"><img src="eagle.jpg" id="theEagle" width="150" style="padding:25px;" /></a>
+
+        <br />
+        <div class="main">
+            <div class="lineup">
+                <div class="vf snap-target"></div>
+                <div class="c snap-target"></div>
+                <div class="hf snap-target"></div>
+                <div class="vb snap-target"></div>
+                <div class="hb snap-target"></div>
+            </div>
+
+            <div class="lineup">
+                <div class="vf snap-target"></div>
+                <div class="c snap-target"></div>
+                <div class="hf snap-target"></div>
+                <div class="vb snap-target"></div>
+                <div class="hb snap-target"></div>
+            </div>
+
+            <div class="lineup">
+                <div class="vf snap-target"></div>
+                <div class="c snap-target"></div>
+                <div class="hf snap-target"></div>
+                <div class="vb snap-target"></div>
+                <div class="hb snap-target"></div>
+            </div>
+
+            <div class="lineup-goalkeeper">
+                <div class="goalkeeper snap-target"></div>
+            </div>
+
+        </div>
+        <br /><br />
+
+        <!--Querystring T=HJ16-->
+        <div class="HJ16" id="HJ16">
+            <div class="players" id="playersHJ16">
+                <div class="draggable">Adam</div>
+                <div class="draggable">Alexander</div>
+                <div class="draggable">Axel</div>
+                <div class="draggable">Benji</div>
+                <div class="draggable">David</div>
+                <div class="draggable">Dexter</div>
+                <div class="draggable">Bean</div>
+                <div class="draggable">Wennberg</div>
+                <div class="draggable">Svanfeldt</div>
+                <div class="draggable">Filip C</div>
+                <div class="draggable">Filip J</div>
+                <div class="draggable">Love</div>
+                <div class="draggable">Martin</div>
+                <div class="draggable">Mattis</div>
+                <div class="draggable">Melker</div>
+                <div class="draggable">Melvin</div>
+                <div class="draggable">Nicke</div>
+                <div class="draggable">Rasmus</div>
+                <div class="draggable">Sebbe</div>
+                <div class="draggable">Stensson</div>
+                <div class="draggable">Viggo</div>
+                <div class="draggable">William B</div>
+                <div class="draggable">Strandell</div>
+                <div class="draggable">Noa 07</div>
+                <div class="draggable">Victor 07</div>
+                <div class="draggable">Kasper 07</div>
+                <div class="draggable">Lian 07</div>
+                <div class="draggable">Lucas Å 07</div>
+                <div class="draggable extras hj16_e1">Extra 1</div>
+                <div class="draggable extras hj16_e2">Extra 2</div>
+                <div class="draggable extras hj16_e3">Extra 2</div>
+            </div>
+        </div>
+
+        <div class="F06" id="F06">
+            <div class="players" id="playersF06">
+                <div class="draggable">2 Oliwia</div>
+                <div class="draggable">3 Ebba H</div>
+                <div class="draggable">4 Nomi</div>
+                <div class="draggable">5 Emma Ö</div>
+                <div class="draggable">7 Antonia</div>
+                <div class="draggable">9 Tyra</div>
+                <div class="draggable">10 Cornelia</div>
+                <div class="draggable">11 Linnea H</div>
+                <div class="draggable">13 Sigrid</div>
+                <div class="draggable">14 Frida</div>
+                <div class="draggable">19 Astrid</div>
+                <div class="draggable">21 Julia</div>
+                <div class="draggable">22 Linnea BJ</div>
+                <div class="draggable">24 Maya</div>
+                <div class="draggable">26 Ella</div>
+                <div class="draggable">29 Ebba Z</div>
+                <div class="draggable">34 Malou</div>
+                <div class="draggable">80 Maja</div>
+                <div class="draggable">90 Thea</div>
+                <div class="draggable extras f06_e1">Extra 1</div>
+                <div class="draggable extras f06_e2">Extra 2</div>
+                <div class="draggable extras f06_e3">Extra 3</div>
+            </div>
+        </div>
+            <br />Dra spelaren till rätt position. Klicka på Örnen så har du uppställningen i urklipp, klistra in på url-shortening bit.ly eller dela direkt i tex Messenger.<br />
+            &copy; t.johansson :-) <br> <A href="https://tojfloc.github.io/TeamBuilder/gm.html">GroupMaker</A>
+</center>
+
+</body>
+</html>

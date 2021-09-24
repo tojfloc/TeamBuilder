@@ -28,6 +28,19 @@ border-width:1px;
     margin-bottom:10px;
 }
 
+.lineup-reserver {
+    height: 175px;
+    width: 750px;
+    border: none;
+    border-color: white;
+    padding-left: 2px;
+    padding-top: 2px;
+    border-bottom: solid;
+    border-color: white;
+    border-width: thick;
+    margin-bottom:10px;
+}
+
 .teams {
     width: 245px;
     height: 75px;
@@ -61,15 +74,10 @@ div.snap-target {
     margin-bottom: 10px;
     float: left;
 
-}
-.changeBackground_org {
-    background-color: firebrick;
-    color: white;
-}
 
 .changeBackground {
-    background-color: azure;
-    color: black;
+    background-color: firebrick;
+    color: white;
 }
 
 div.draggable {
@@ -126,8 +134,3 @@ div.draggable {
     border: none;
 	display: none;
 }
-.F03 {
-    border: none;
-	display: none;
-}
-
