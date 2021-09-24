@@ -33,15 +33,6 @@
         });
     });
         
-  
-    //Klick player to higlight
-    $(document).ready(function () {
-        $(".draggable").click(function () {
-            $(this).toggleClass("changeBackground");
-        });
-    });
-
-
     function exportLineups() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const searchParams = Object.fromEntries(urlSearchParams.entries());
