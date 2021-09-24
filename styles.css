@@ -160,6 +160,7 @@ div.draggable {
     {
        display:table-row;
        width:auto;
+       border:1px solid  white;
     }
 
     .divCell
@@ -168,4 +169,5 @@ div.draggable {
         display:table-column;
         width:200px;
         background-color:transparent;
+        border:1px solid  white;
     }
