@@ -46,7 +46,7 @@
         exportObject['f06_e1'] = $('.f06_e1').text();
         exportObject['f06_e2'] = $('.f06_e2').text();
         exportObject['f06_e3'] = $('.f06_e3').text();
-        exportObject['opponents'] = $('.opponents').value.text();
+        //exportObject['opponents'] = $('.opponents').value.text();
         
         
         for(var i = 0; i < lineups.length; i++) {
@@ -84,7 +84,7 @@
             $('.f06_e1').text(importObject['f06_e1']);
             $('.f06_e2').text(importObject['f06_e2']);
             $('.f06_e3').text(importObject['f06_e3']);
-            $('.opponents').value.text(importObject['opponents']);
+            //$('.opponents').value.text(importObject['opponents']);
             
             for (var i = 0; i < importObject.lineups.length; i++) {
                 var lineup = importObject.lineups[i];
