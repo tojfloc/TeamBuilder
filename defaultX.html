@@ -33,6 +33,15 @@
         });
     });
         
+  
+    //Klick player to higlight
+    $(document).ready(function () {
+        $(".draggable").click(function () {
+            $(this).toggleClass("changeBackground");
+        });
+    });
+
+
     function exportLineups() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const searchParams = Object.fromEntries(urlSearchParams.entries());
@@ -46,6 +55,7 @@
         exportObject['f06_e1'] = $('.f06_e1').text();
         exportObject['f06_e2'] = $('.f06_e2').text();
         exportObject['f06_e3'] = $('.f06_e3').text();
+
         
         for(var i = 0; i < lineups.length; i++) {
             var lineup = lineups[i];
@@ -64,6 +74,9 @@
         url += 'e=' + b64object;
         copyToClipboard(url);
     }
+
+       
+
 
     function importLineups() {
         const urlSearchParams = new URLSearchParams(window.location.search);
@@ -200,13 +213,20 @@
 <body onload='importLineups()'>
 
     <center>
+    <div class="teams" id="teams">
+        <a href="default.html?team=HJ16">HJ16</a> | <a href="default.html?team=F06">F06</a>
+    </div>
 
-        <div class="teams" id="teams">
-            <a href="default.html?team=HJ16">HJ16</a> | <a href="default.html?team=F06">F06</a>
-        </div>
-
-        <a href="#" onclick="exportLineups();return false;" id="export"><img src="eagle.jpg" id="theEagle" width="150" style="padding:25px;" /></a>
-
+<div class="divTable">
+   <div class="divRow">
+       <div class="divCell"><a href="#" onclick="exportLineups();return false;" id="export"><img src="eagle.jpg" id="theEagle" width="150" style="padding:25px;" /></a></div>
+       <div class="divCell">
+           <input class="input" type="text" id="opponents" value="Ange motståndare">
+           <input class="input" type="text" id="datum" value="Ange datum">
+           <input class="input" type="text" id="gameplace" value="Ange spelplats">
+    </div>
+   </div>
+</div>
         <br />
         <div class="main">
             <div class="lineup">
@@ -236,16 +256,16 @@
             <div class="lineup-goalkeeper">
                 <div class="goalkeeper snap-target"></div>
             </div>
-
+            <hr>
+<B>RESERVER</B>
             <div class="lineup">
-                <div class="reserv1 res snap-target"></div>
-                <div class="reserv2 res snap-target"></div>
-                <div class="reserv3 res snap-target"></div>
-                <div class="reserv4 res snap-target"></div>
-                <div class="reserv5 res snap-target"></div>
-                <div class="reserv6 res snap-target"></div>
+                <div class="vf res snap-target"></div>
+                <div class="c res snap-target"></div>
+                <div class="hf res snap-target"></div>
+                <div class="vb res snap-target"></div>
+                <div class="hb res snap-target"></div>
             </div>
-
+            <hr>
         </div>
         <br /><br />
 
@@ -263,6 +283,9 @@
                 <div class="draggable">Svanfeldt</div>
                 <div class="draggable">Filip C</div>
                 <div class="draggable">Filip J</div>
+                <div class="draggable">Elton</div>
+                <div class="draggable">Hannes</div>
+                <div class="draggable">Jonte</div>
                 <div class="draggable">Love</div>
                 <div class="draggable">Martin</div>
                 <div class="draggable">Mattis</div>

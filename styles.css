@@ -121,8 +121,7 @@ div.draggable {
     }
 
     div.res {
-
-        background-color: blue;   
+        background-color:cornsilk ;   
     }
 .players {
     width: 750px;
@@ -139,3 +138,33 @@ div.draggable {
     border: none;
 	display: none;
 }
+
+.input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.divTable
+    {
+        display:  table;
+        width:auto;
+        background-color: transparent;
+        border:1px solid  white;
+        border-spacing:5px;/*cellspacing:poor IE support for  this*/
+       /* border-collapse:separate;*/
+    }
+
+    .divRow
+    {
+       display:table-row;
+       width:auto;
+    }
+
+    .divCell
+    {
+        float:left;/*fix for  buggy browsers*/
+        display:table-column;
+        width:200px;
+        background-color:transparent;
+    }
