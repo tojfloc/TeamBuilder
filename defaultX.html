@@ -207,6 +207,7 @@
                     alert('Ange parameter i url: ?team=HJ16');
                 }
         });
+        
     </script>
 
 </head>
@@ -221,9 +222,9 @@
    <div class="divRow">
        <div class="divCell"><a href="#" onclick="exportLineups();return false;" id="export"><img src="eagle.jpg" id="theEagle" width="150" style="padding:25px;" /></a></div>
        <div class="divCell">
-           <input class="input" type="text" id="opponents" value="Ange motståndare">
-           <input class="input" type="text" id="datum" value="Ange datum">
-           <input class="input" type="text" id="gameplace" value="Ange spelplats">
+           <input class="input" type="text" onfocus="this.value=''" id="opponents" value="Ange motståndare">
+           <input class="input" type="text" onfocus="this.value=''" id="datum" value="Ange datum">
+           <input class="input" type="text" onfocus="this.value=''" id="gameplace" value="Ange spelplats">
     </div>
    </div>
 </div>
