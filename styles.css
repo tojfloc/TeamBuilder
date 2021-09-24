@@ -5,6 +5,7 @@ div
 {
     border-color:gray;
     border-width:1px;
+    border:solid;
 }
 
 .main {
@@ -84,7 +85,7 @@ div.draggable {
     border-left-width: 1px;
     background-color: white;
     color: black;
-    border:solid;
+
 
 }
 
