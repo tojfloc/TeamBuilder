@@ -36,19 +36,16 @@
     function exportLineups() {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const searchParams = Object.fromEntries(urlSearchParams.entries());
- 
+
         var exportObject = { 'lineups':[] };
         var lineups = $('.lineup');
-        //exportObject['showAllLines'] = $('.lineup').length == $('.lineup:visible').length;
+        exportObject['showAllLines'] = $('.lineup').length == $('.lineup:visible').length;
         exportObject['hj16_e1'] = $('.hj16_e1').text();
         exportObject['hj16_e2'] = $('.hj16_e2').text();
         exportObject['hj16_e3'] = $('.hj16_e3').text();
         exportObject['f06_e1'] = $('.f06_e1').text();
         exportObject['f06_e2'] = $('.f06_e2').text();
         exportObject['f06_e3'] = $('.f06_e3').text();
-        exportObject['opponents'] = $('#opponents').val();
-        exportObject['gameplace'] = $('#gameplace').val();
-        exportObject['gamedate'] = $('#gamedate').val();
         
         for(var i = 0; i < lineups.length; i++) {
             var lineup = lineups[i];
@@ -74,7 +71,7 @@
 	    
         if (searchParams['e'] !== undefined) {
             const importObject = JSON.parse(atob(searchParams['e']));
-            //if (importObject.showAllLines) $('.3rdLine').show();
+            if (importObject.showAllLines) $('.3rdLine').show();
 
             $('.hj16_e1').text(importObject['hj16_e1']);
             $('.hj16_e2').text(importObject['hj16_e2']);
@@ -82,10 +79,6 @@
             $('.f06_e1').text(importObject['f06_e1']);
             $('.f06_e2').text(importObject['f06_e2']);
             $('.f06_e3').text(importObject['f06_e3']);
-            $('#opponents').val(importObject['opponents']);
-            $('#gameplace').val(importObject['gameplace']);
-            $('#gamedate').val(importObject['gamedate']);
-
             
             for (var i = 0; i < importObject.lineups.length; i++) {
                 var lineup = importObject.lineups[i];
@@ -107,26 +100,26 @@
         }
     }
 	    
-    // //Random teams - bort
-    // $('#theEagle').on('click', function() {
-    //     var col = 1;
-    //     var row = 1;
-    //     var c = 1;
-    //     while ($('.players .changeBackground').length > 0 || c++ < 10) {
-    //         var team = '.cols:nth-child(' + col + ') div:nth-child(' + row + ')'
-    //         $('.players .changeBackground:first').appendTo(team);
-    //         if (col == 2) {
-    //             col = 1;
-    //             if (row == 6) {
-    //                 row = 1;
-    //             } else {
-    //                 row++;
-    //             }
-    //         } else {
-    //             col = 2;
-    //         }
-    //     }
-    // });
+    //Random teams
+    $('#theEagle').on('click', function() {
+        var col = 1;
+        var row = 1;
+        var c = 1;
+        while ($('.players .changeBackground').length > 0 || c++ < 10) {
+            var team = '.cols:nth-child(' + col + ') div:nth-child(' + row + ')'
+            $('.players .changeBackground:first').appendTo(team);
+            if (col == 2) {
+                col = 1;
+                if (row == 6) {
+                    row = 1;
+                } else {
+                    row++;
+                }
+            } else {
+                col = 2;
+            }
+        }
+    });
 	    
     //Make Div draggable
         $(function () {
@@ -201,29 +194,20 @@
                     alert('Ange parameter i url: ?team=HJ16');
                 }
         });
-        
     </script>
 
 </head>
 <body onload='importLineups()'>
 
     <center>
-    <div class="teams" id="teams">
-        <a href="default.html?team=HJ16">HJ16</a> | <a href="default.html?team=F06">F06</a>
-    </div>
 
-<div class="divTable">
-   <div class="divRow">
-       <div class="divCell"><a href="#" onclick="exportLineups();return false;" id="export"><img src="eagle.jpg" id="theEagle" width="150" style="padding:25px;" /></a></div>
-       <div class="divCell">
-           <input class="input opponents" type="text" id="opponents" placeholder="Ange motståndare">
-           <input class="input gameplace" type="text" id="gameplace" placeholder="Ange spelplats">
-           <input class="input gamedate" type="text" id="gamedate" placeholder="Ange datum">
-    </div>
+        <div class="teams" id="teams">
+            <a href="default.html?team=HJ16">HJ16</a> | <a href="default.html?team=F06">F06</a>
+        </div>
 
-   </div>
-   
-</div>
+        <a href="#" onclick="exportLineups();return false;" id="export"><img src="eagle.jpg" id="theEagle" width="150" style="padding:25px;" /></a>
+
+        <br />
         <div class="main">
             <div class="lineup">
                 <div class="vf snap-target"></div>
@@ -252,16 +236,7 @@
             <div class="lineup-goalkeeper">
                 <div class="goalkeeper snap-target"></div>
             </div>
-            <hr>
-<B>RESERVER</B>
-            <div class="lineup">
-                <div class="vf res snap-target"></div>
-                <div class="c res snap-target"></div>
-                <div class="hf res snap-target"></div>
-                <div class="vb res snap-target"></div>
-                <div class="hb res snap-target"></div>
-            </div>
-            <hr>
+
         </div>
         <br /><br />
 
@@ -275,15 +250,10 @@
                 <div class="draggable">David</div>
                 <div class="draggable">Dexter</div>
                 <div class="draggable">Bean</div>
-                <div class="draggable">Stensson</div>
                 <div class="draggable">Wennberg</div>
-                <div class="draggable">Elton</div>
                 <div class="draggable">Svanfeldt</div>
-                <div class="draggable">Filip J</div>
                 <div class="draggable">Filip C</div>
-                <div class="draggable">Hannes</div>
-                <div class="draggable">Idus</div>
-                <div class="draggable">Jonte</div>
+                <div class="draggable">Filip J</div>
                 <div class="draggable">Love</div>
                 <div class="draggable">Martin</div>
                 <div class="draggable">Mattis</div>
@@ -292,9 +262,10 @@
                 <div class="draggable">Nicke</div>
                 <div class="draggable">Rasmus</div>
                 <div class="draggable">Sebbe</div>
+                <div class="draggable">Stensson</div>
                 <div class="draggable">Viggo</div>
-                <div class="draggable">Strandell</div>
                 <div class="draggable">William B</div>
+                <div class="draggable">Strandell</div>
                 <div class="draggable">Noa 07</div>
                 <div class="draggable">Victor 07</div>
                 <div class="draggable">Kasper 07</div>
